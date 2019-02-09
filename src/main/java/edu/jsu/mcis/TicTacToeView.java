@@ -11,9 +11,12 @@ public class TicTacToeView extends JPanel {
     private final JPanel squaresPanel;
     private final JLabel resultLabel;
 
+    private int width;
+
     public TicTacToeView(TicTacToeController controller, int width) {
 
         this.controller = controller;
+        this.width = width;
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         board = new JButton[width][width];
@@ -42,19 +45,32 @@ public class TicTacToeView extends JPanel {
 
     }
 
-    public void updateSquares() {
+    public void updateSquares(JButton b, boolean turn, boolean empty) {
 
         /* Refresh the GUI with updated data from the Model (via the Controller) */
 
         // INSERT YOUR CODE HERE
-
+        if (empty == true) {
+          //Alternate Turns
+          if (turn == true) {
+            b.setText("X");
+          }else if (turn == false) {
+            b.setText("O");
+          }
+          //
+        }
     }
 
     public void disableSquares() {
 
         /* Disable buttons (to disallow input after game is over) */
-    
+
         // INSERT YOUR CODE HERE
+        for (int row = 0; row < width; ++row) {
+          for (int col = 0; col < width; ++col) {
+            board[row][col].setEnabled(false);
+          }
+        }
 
     }
 

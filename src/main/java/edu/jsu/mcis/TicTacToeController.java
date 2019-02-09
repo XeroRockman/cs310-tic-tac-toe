@@ -1,6 +1,11 @@
 package edu.jsu.mcis;
 
-public class TicTacToeController {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActtionListener;
+import java.awt.*;
+import javax.swing.*;
+
+public class TicTacToeController implements ActionListener {
 
     private final TicTacToeModel model;
     private final TicTacToeView view;
@@ -12,36 +17,40 @@ public class TicTacToeController {
         /* Initialize model, view, and width */
 
         model = new TicTacToeModel(width);
-        view = new TicTacToeView();
+        view = new TicTacToeView(this, width);
 
     }
 
-    public void start() {
+    public String getMarkAsString(int row, int col) {
+      return (model.getMark(row, col).toString());
+    }
 
-        /* MAIN LOOP (repeats until game is over) */
+    public TicTacToeView getView() {
+      return view;
+    }
 
-        /* Display the board using the View's "showBoard()", then use
-           "getNextMove()" to get the next move from the player.  Enter
-           the move (using the Model's "makeMark()", or display an error
-           using the View's "showInputError()" if the move is invalid. */
+    @Override
+    public void actionPerformed(ActionEvent event) {
+      Object source = event.getSource();
 
-        // INSERT YOUR CODE HERE
+      if (source instanceof JButton) {
 
-        while(!model.isGameover()) {
-          view.showBoard(model.toString());
-          TicTacToeMove Move = view.getNextMove(model.isXTurn());
+        JButton button = (JButton)source;
+        String bName = button.getName();
+        int nRow = 0;
+        int nCol = 0;
+        Character chRow;
+        Character chCol;
 
-          if(!model.makeMark(Move.getRow(), Move.getCol())) {
-            view.showInputError();
-          }
-        }
-
-        /* After the game is over, show the final board and the winner */
-
-        view.showBoard(model.toString());
-
+        chRow = bName.charAt(6);
+        chCol = bName.charAt(7);
+        nRow = Character.getNumericValue(chRow);
+        nCol = Character.getNumericValue(chCol);
+        
+        view.updateSquares(button, model.isXTurn(), model.makeMark(nRow,nCol));
         view.showResult(model.getResult().toString());
+     }
 
-    }
-
+   }
+ }
 }
