@@ -93,7 +93,6 @@ public class TicTacToeModel {
            other player before returning TRUE.  Otherwise, return FALSE. */
 
         // INSERT YOUR CODE HERE
-
         if (isValidSquare(row, col) == false) {
           return false;
         }else if (isSquareMarked(row, col) == true) {
@@ -118,8 +117,7 @@ public class TicTacToeModel {
         /* Return TRUE if the specified location is within the bounds of the board */
 
         // INSERT YOUR CODE HERE
-
-        if ((-1 < row) && (row < width) && (-1 < col) && (col < width)) {
+        if ((-1 < row) && (row < width) && (col < width) && (-1 < col)) {
           return true;
         }else {
           return false;
@@ -132,7 +130,7 @@ public class TicTacToeModel {
         /* Return TRUE if the square at specified location is marked */
 
         // INSERT YOUR CODE HERE
-        if (board[row][col] != Mark.EMPTY){
+        if (board[row][col] != Mark.EMPTY) {
           return true;
         }else {
           return false;
@@ -145,7 +143,7 @@ public class TicTacToeModel {
         /* Return the mark from the square at the specified location */
 
         // INSERT YOUR CODE HERE
-        // change return statement (only change needed)
+        // changed the return statement (only change needed)
         return board[row][col];
 
     }
@@ -307,7 +305,7 @@ public class TicTacToeModel {
             }
 
           }
-        } 
+        }
 
         return output.toString();
 
