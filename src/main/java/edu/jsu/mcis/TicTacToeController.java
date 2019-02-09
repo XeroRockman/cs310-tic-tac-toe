@@ -46,11 +46,10 @@ public class TicTacToeController implements ActionListener {
         chCol = bName.charAt(7);
         nRow = Character.getNumericValue(chRow);
         nCol = Character.getNumericValue(chCol);
-        
+
         view.updateSquares(button, model.isXTurn(), model.makeMark(nRow,nCol));
         view.showResult(model.getResult().toString());
      }
 
    }
- }
 }
